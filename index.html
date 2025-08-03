@@ -10,16 +10,10 @@
       max-width: 700px;
       margin: auto;
       padding: 20px;
-      background-image: url('Screenshot_20-removebg-preview.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #fff;
-      backdrop-filter: blur(4px);
+      background-color: #f2f2f2;
     }
     h1, h2 {
       text-align: center;
-      color: #fff;
     }
     label, select, input[type="text"] {
       display: block;
@@ -45,7 +39,7 @@
       background-color: #0056b3;
     }
     .prediction-entry {
-      background: rgba(0,0,0,0.7);
+      background: #fff;
       padding: 10px;
       margin-top: 10px;
       border-radius: 5px;
@@ -77,11 +71,17 @@
     window.submitForm = async function () {
       const prediction = {
         name: document.getElementById("username").value.trim(),
-        roman_vs_gunther: document.getElementById("roman_vs_gunther").value,
-        becky_vs_bianca: document.getElementById("becky_vs_bianca").value,
-        logan_vs_randy: document.getElementById("logan_vs_randy").value,
-        tag_match: document.getElementById("tag_match").value,
-        ic_title: document.getElementById("ic_title").value,
+        world_title: document.getElementById("world_title").value,
+        womens_title: document.getElementById("womens_title").value,
+        womens_tag: document.getElementById("womens_tag").value,
+        orton_tag: document.getElementById("orton_tag").value,
+        roman_tag: document.getElementById("roman_tag").value,
+        sami_match: document.getElementById("sami_match").value,
+        cena_vs_cody: document.getElementById("cena_vs_cody").value,
+        womens_world: document.getElementById("womens_world").value,
+        intercontinental: document.getElementById("intercontinental").value,
+        us_title: document.getElementById("us_title").value,
+        tag_tlc: document.getElementById("tag_tlc").value,
         cody_heel_turn: document.getElementById("cody_heel_turn").value,
         timestamp: new Date()
       };
@@ -113,11 +113,17 @@
         div.className = "prediction-entry";
         div.innerHTML = `
           <strong>${data.name}</strong><br/>
-          Roman Reigns vs. Gunther: ${data.roman_vs_gunther}<br/>
-          Becky Lynch vs. Bianca Belair: ${data.becky_vs_bianca}<br/>
-          Logan Paul vs. Randy Orton: ${data.logan_vs_randy}<br/>
-          Tag Match: ${data.tag_match}<br/>
-          Intercontinental Title: ${data.ic_title}<br/>
+          World Title: ${data.world_title}<br/>
+          Women's Title: ${data.womens_title}<br/>
+          Women's Tag Match: ${data.womens_tag}<br/>
+          Orton & Jelly Roll: ${data.orton_tag}<br/>
+          Roman & Jey: ${data.roman_tag}<br/>
+          Sami vs. Kross: ${data.sami_match}<br/>
+          Cena vs. Cody: ${data.cena_vs_cody}<br/>
+          Women's World: ${data.womens_world}<br/>
+          Intercontinental: ${data.intercontinental}<br/>
+          US Title: ${data.us_title}<br/>
+          TLC Tag Match: ${data.tag_tlc}<br/>
           Cody Heel Turn: ${data.cody_heel_turn}
         `;
         container.appendChild(div);
@@ -133,37 +139,78 @@
     <label for="username">Enter Your Name:</label>
     <input type="text" id="username" required />
 
-    <label for="roman_vs_gunther">Roman Reigns vs. Gunther:</label>
-    <select id="roman_vs_gunther">
-      <option>Roman Reigns</option>
+    <label for="world_title">Gunther vs. CM Punk:</label>
+    <select id="world_title">
       <option>Gunther</option>
+      <option>CM Punk</option>
     </select>
 
-    <label for="becky_vs_bianca">Becky Lynch vs. Bianca Belair:</label>
-    <select id="becky_vs_bianca">
-      <option>Becky Lynch</option>
-      <option>Bianca Belair</option>
+    <label for="womens_title">Tiffany Stratton vs. Jade Cargill:</label>
+    <select id="womens_title">
+      <option>Tiffany Stratton</option>
+      <option>Jade Cargill</option>
     </select>
 
-    <label for="logan_vs_randy">Logan Paul vs. Randy Orton:</label>
-    <select id="logan_vs_randy">
-      <option>Logan Paul</option>
-      <option>Randy Orton</option>
+    <label for="womens_tag">Raquel & Roxanne vs. Charlotte & Alexa:</label>
+    <select id="womens_tag">
+      <option>Raquel & Roxanne</option>
+      <option>Charlotte & Alexa</option>
     </select>
 
-    <label for="tag_match">Sami Zayn & Kevin Owens vs. DIY:</label>
-    <select id="tag_match">
-      <option>Sami Zayn & Kevin Owens</option>
-      <option>DIY (Ciampa & Gargano)</option>
+    <label for="orton_tag">Orton & Jelly Roll vs. Drew & Logan:</label>
+    <select id="orton_tag">
+      <option>Orton & Jelly Roll</option>
+      <option>Drew & Logan</option>
     </select>
 
-    <label for="ic_title">Intercontinental Title Match:</label>
-    <select id="ic_title">
-      <option>Bron Breakker</option>
-      <option>Ricochet</option>
+    <label for="roman_tag">Roman & Jey vs. Bron & Bronson:</label>
+    <select id="roman_tag">
+      <option>Roman & Jey</option>
+      <option>Bron & Bronson</option>
     </select>
 
-    <label for="cody_heel_turn">Will Cody Rhodes turn heel tonight?</label>
+    <label for="sami_match">Sami Zayn vs. Karrion Kross:</label>
+    <select id="sami_match">
+      <option>Sami Zayn</option>
+      <option>Karrion Kross</option>
+    </select>
+
+    <label for="cena_vs_cody">John Cena vs. Cody Rhodes:</label>
+    <select id="cena_vs_cody">
+      <option>John Cena</option>
+      <option>Cody Rhodes</option>
+    </select>
+
+    <label for="womens_world">Naomi vs. Rhea Ripley vs. Iyo Sky:</label>
+    <select id="womens_world">
+      <option>Naomi</option>
+      <option>Rhea Ripley</option>
+      <option>Iyo Sky</option>
+    </select>
+
+    <label for="intercontinental">AJ Styles vs. Dominik Mysterio:</label>
+    <select id="intercontinental">
+      <option>AJ Styles</option>
+      <option>Dominik Mysterio</option>
+    </select>
+
+    <label for="us_title">Solo Sikoa vs. Jacob Fatu:</label>
+    <select id="us_title">
+      <option>Solo Sikoa</option>
+      <option>Jacob Fatu</option>
+    </select>
+
+    <label for="tag_tlc">TLC Tag Team Match Winner:</label>
+    <select id="tag_tlc">
+      <option>The Wyatt Sicks</option>
+      <option>Andrade & Rey Fénix</option>
+      <option>Street Profits</option>
+      <option>DIY</option>
+      <option>Motor City Machine Guns</option>
+      <option>Fraxiom</option>
+    </select>
+
+    <label for="cody_heel_turn">Will Cody turn heel?</label>
     <select id="cody_heel_turn">
       <option>Yes</option>
       <option>No</option>
