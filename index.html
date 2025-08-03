@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SummerSlam 2025 Predictions</title>
+  <title>SummerSlam 2025 Picks</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       max-width: 700px;
       margin: auto;
       padding: 20px;
-      background-color: #f2f2f2;
+      background-image: url('Screenshot_20-removebg-preview.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      backdrop-filter: blur(4px);
     }
     h1, h2 {
       text-align: center;
+      color: #fff;
     }
     label, select, input[type="text"] {
       display: block;
@@ -39,7 +45,7 @@
       background-color: #0056b3;
     }
     .prediction-entry {
-      background: #fff;
+      background: rgba(0,0,0,0.7);
       padding: 10px;
       margin-top: 10px;
       border-radius: 5px;
@@ -56,13 +62,13 @@
     import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAMQFGFNXlQ1lhRjXaBQ_qpOY084-sX2m0",
-      authDomain: "mitb2025terarria.firebaseapp.com",
-      projectId: "mitb2025terarria",
-      storageBucket: "mitb2025terarria.firebasestorage.app",
-      messagingSenderId: "445415408115",
-      appId: "1:445415408115:web:ea0947c41fe1194f525286",
-      measurementId: "G-GBS9DCR1R8"
+      apiKey: "AIzaSyCL9bYlJy3UD263Bg7i63nKg2hBdWYSS8U",
+      authDomain: "summerslam2025-e0367.firebaseapp.com",
+      projectId: "summerslam2025-e0367",
+      storageBucket: "summerslam2025-e0367.firebasestorage.app",
+      messagingSenderId: "415608766355",
+      appId: "1:415608766355:web:1062f4141f0d9dc06fb266",
+      measurementId: "G-JZGB1RH03E"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -71,19 +77,12 @@
     window.submitForm = async function () {
       const prediction = {
         name: document.getElementById("username").value.trim(),
-        gunther_punk: document.getElementById("gunther_punk").value,
-        roman_bron: document.getElementById("roman_bron").value,
-        orton_logan: document.getElementById("orton_logan").value,
-        tiffany_jade: document.getElementById("tiffany_jade").value,
-        womens_tag: document.getElementById("womens_tag").value,
-        sami_kross: document.getElementById("sami_kross").value,
-        cena_cody: document.getElementById("cena_cody").value,
-        naomi_triple: document.getElementById("naomi_triple").value,
-        becky_lyra: document.getElementById("becky_lyra").value,
-        solo_fatu: document.getElementById("solo_fatu").value,
-        aj_dominik: document.getElementById("aj_dominik").value,
-        tag_tlc: document.getElementById("tag_tlc").value,
-        cody_turn: document.getElementById("cody_turn").value,
+        roman_vs_gunther: document.getElementById("roman_vs_gunther").value,
+        becky_vs_bianca: document.getElementById("becky_vs_bianca").value,
+        logan_vs_randy: document.getElementById("logan_vs_randy").value,
+        tag_match: document.getElementById("tag_match").value,
+        ic_title: document.getElementById("ic_title").value,
+        cody_heel_turn: document.getElementById("cody_heel_turn").value,
         timestamp: new Date()
       };
 
@@ -93,7 +92,7 @@
       }
 
       try {
-        await addDoc(collection(db, "summerslam_predictions"), prediction);
+        await addDoc(collection(db, "predictions"), prediction);
         alert("Thank you for your picks, " + prediction.name + "!");
         document.getElementById("predictionForm").reset();
         loadPredictions();
@@ -107,26 +106,19 @@
       const container = document.getElementById("predictionsList");
       container.innerHTML = "<h2>Submitted Predictions</h2>";
 
-      const querySnapshot = await getDocs(collection(db, "summerslam_predictions"));
+      const querySnapshot = await getDocs(collection(db, "predictions"));
       querySnapshot.forEach((doc) => {
         const data = doc.data();
         const div = document.createElement("div");
         div.className = "prediction-entry";
         div.innerHTML = `
           <strong>${data.name}</strong><br/>
-          Gunther vs. Punk: ${data.gunther_punk}<br/>
-          Roman & Jey vs. Bron & Bronson: ${data.roman_bron}<br/>
-          Orton & Jelly Roll vs. Drew & Logan: ${data.orton_logan}<br/>
-          Tiffany vs. Jade: ${data.tiffany_jade}<br/>
-          Women's Tag: ${data.womens_tag}<br/>
-          Sami vs. Kross: ${data.sami_kross}<br/>
-          Cena vs. Cody: ${data.cena_cody}<br/>
-          Naomi vs. Rhea vs. Iyo: ${data.naomi_triple}<br/>
-          Becky vs. Lyra: ${data.becky_lyra}<br/>
-          Solo vs. Fatu: ${data.solo_fatu}<br/>
-          AJ vs. Dominik: ${data.aj_dominik}<br/>
-          Tag TLC: ${data.tag_tlc}<br/>
-          Cody Heel Turn: ${data.cody_turn}
+          Roman Reigns vs. Gunther: ${data.roman_vs_gunther}<br/>
+          Becky Lynch vs. Bianca Belair: ${data.becky_vs_bianca}<br/>
+          Logan Paul vs. Randy Orton: ${data.logan_vs_randy}<br/>
+          Tag Match: ${data.tag_match}<br/>
+          Intercontinental Title: ${data.ic_title}<br/>
+          Cody Heel Turn: ${data.cody_heel_turn}
         `;
         container.appendChild(div);
       });
@@ -136,90 +128,43 @@
   </script>
 </head>
 <body>
-  <h1>SummerSlam 2025 Predictions</h1>
+  <h1>SummerSlam 2025 Picks</h1>
   <form id="predictionForm">
     <label for="username">Enter Your Name:</label>
     <input type="text" id="username" required />
 
-    <label for="gunther_punk">Gunther vs. CM Punk:</label>
-    <select id="gunther_punk">
+    <label for="roman_vs_gunther">Roman Reigns vs. Gunther:</label>
+    <select id="roman_vs_gunther">
+      <option>Roman Reigns</option>
       <option>Gunther</option>
-      <option>CM Punk</option>
     </select>
 
-    <label for="roman_bron">Roman & Jey vs. Bron & Bronson:</label>
-    <select id="roman_bron">
-      <option>Roman Reigns & Jey Uso</option>
-      <option>Bron Breakker & Bronson Reed</option>
-    </select>
-
-    <label for="orton_logan">Orton & Jelly Roll vs. Drew & Logan:</label>
-    <select id="orton_logan">
-      <option>Randy Orton & Jelly Roll</option>
-      <option>Drew McIntyre & Logan Paul</option>
-    </select>
-
-    <label for="tiffany_jade">Tiffany Stratton vs. Jade Cargill:</label>
-    <select id="tiffany_jade">
-      <option>Tiffany Stratton</option>
-      <option>Jade Cargill</option>
-    </select>
-
-    <label for="womens_tag">Women's Tag Titles:</label>
-    <select id="womens_tag">
-      <option>Raquel Rodriguez & Roxanne Perez</option>
-      <option>Alexa Bliss & Charlotte Flair</option>
-    </select>
-
-    <label for="sami_kross">Sami Zayn vs. Karrion Kross:</label>
-    <select id="sami_kross">
-      <option>Sami Zayn</option>
-      <option>Karrion Kross</option>
-    </select>
-
-    <label for="cena_cody">John Cena vs. Cody Rhodes:</label>
-    <select id="cena_cody">
-      <option>John Cena</option>
-      <option>Cody Rhodes</option>
-    </select>
-
-    <label for="naomi_triple">Naomi vs. Rhea vs. Iyo:</label>
-    <select id="naomi_triple">
-      <option>Naomi</option>
-      <option>Rhea Ripley</option>
-      <option>Iyo Sky</option>
-    </select>
-
-    <label for="becky_lyra">Becky Lynch vs. Lyra Valkyria:</label>
-    <select id="becky_lyra">
+    <label for="becky_vs_bianca">Becky Lynch vs. Bianca Belair:</label>
+    <select id="becky_vs_bianca">
       <option>Becky Lynch</option>
-      <option>Lyra Valkyria</option>
+      <option>Bianca Belair</option>
     </select>
 
-    <label for="solo_fatu">Solo Sikoa vs. Jacob Fatu:</label>
-    <select id="solo_fatu">
-      <option>Solo Sikoa</option>
-      <option>Jacob Fatu</option>
+    <label for="logan_vs_randy">Logan Paul vs. Randy Orton:</label>
+    <select id="logan_vs_randy">
+      <option>Logan Paul</option>
+      <option>Randy Orton</option>
     </select>
 
-    <label for="aj_dominik">AJ Styles vs. Dominik Mysterio:</label>
-    <select id="aj_dominik">
-      <option>AJ Styles</option>
-      <option>Dominik Mysterio</option>
+    <label for="tag_match">Sami Zayn & Kevin Owens vs. DIY:</label>
+    <select id="tag_match">
+      <option>Sami Zayn & Kevin Owens</option>
+      <option>DIY (Ciampa & Gargano)</option>
     </select>
 
-    <label for="tag_tlc">Tag Team TLC Match:</label>
-    <select id="tag_tlc">
-      <option>Wyatt Sicks</option>
-      <option>DIY</option>
-      <option>Street Profits</option>
-      <option>Motor City Machine Guns</option>
-      <option>Fraxium</option>
-      <option>Andrade & Rey Fénix</option>
+    <label for="ic_title">Intercontinental Title Match:</label>
+    <select id="ic_title">
+      <option>Bron Breakker</option>
+      <option>Ricochet</option>
     </select>
 
-    <label for="cody_turn">Will Cody turn Heel?</label>
-    <select id="cody_turn">
+    <label for="cody_heel_turn">Will Cody Rhodes turn heel tonight?</label>
+    <select id="cody_heel_turn">
       <option>Yes</option>
       <option>No</option>
     </select>
